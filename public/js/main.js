@@ -1,9 +1,14 @@
 $(function() {
+  var render = function(partial) {
+    return function(ctx) {
+      console.log(partial)
+    }
+  }
+    //Side menu
 
     $('#side-menu').metisMenu({
         toggle: false
     });
-
 });
 
 //Loads the correct sidebar on window load,
