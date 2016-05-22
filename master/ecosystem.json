@@ -24,10 +24,10 @@
     production : {
       user : "root",
       host : "192.54.201.57",
-      ref  : "production/master",
+      ref  : "origin/master",
       repo : "~/repos/atgc-benchmark-tool.git",
       path : "/var/www/atgc-benchmark-tool",
-      "post-deploy" : "cd master ; npm install ; pm2 startOrRestart master/ecosystem.json --env production"
+      "post-deploy" : "cd master ; npm install ; npm install -g webpack ; webpack ; pm2 startOrRestart ecosystem.json --env production"
     },
   }
 }

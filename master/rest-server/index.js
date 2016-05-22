@@ -53,7 +53,7 @@ dirs.forEach(d => {
 let uri = `mongodb://${config.mongodb_host}:${config.mongodb_port}/${config.mongodb_dbname}`
 mongoose.connect("mongodb://localhost/test").then(() => {
   console.log("connected to db");
-  app.listen(3001, function () {
+  app.listen(3000, function () {
     console.log('Example app listening on port 3000!');
   });
 })
