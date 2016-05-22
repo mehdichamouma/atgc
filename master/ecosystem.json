@@ -1,0 +1,33 @@
+{
+  /**
+   * Application configuration section
+   * http://pm2.keymetrics.io/docs/usage/application-declaration/
+   */
+  apps : [
+    {
+      name      : "MASTER",
+      script    : "build/server.js",
+      env: {
+        COMMON_VARIABLE: "true"
+      },
+      env_production : {
+        NODE_ENV: "production"
+      }
+    },
+  ],
+
+  /**
+   * Deployment section
+   * http://pm2.keymetrics.io/docs/usage/deployment/
+   */
+  deploy : {
+    production : {
+      user : "root",
+      host : "192.54.201.57",
+      ref  : "production/master",
+      repo : "~/repos/atgc-benchmark-tool.git",
+      path : "/var/www/atgc-benchmark-tool",
+      "post-deploy" : "cd master ; npm install ; pm2 startOrRestart master/ecosystem.json --env production"
+    },
+  }
+}

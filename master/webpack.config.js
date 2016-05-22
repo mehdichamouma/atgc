@@ -15,7 +15,7 @@ module.exports = [{
   entry: "./rest-server/index.js",
   target: 'node',
   output: {
-    path: path.join(__dirname, 'bin'),
+    path: path.join(__dirname, 'build'),
     publicPath: "../public/",
     filename: "server.js"
   },
