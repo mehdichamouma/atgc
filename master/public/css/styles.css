@@ -1,0 +1,27 @@
+.dropZone {
+  border-radius: 5px;
+  padding: 20px;
+  border: 2px dashed rgb(120, 120, 120);
+  color: rgb(150, 150, 150);
+  margin: 0 10px;
+  text-align: center;
+  min-height: 140px;
+}
+
+.modal-tree-view {
+  width: 90%
+}
+
+.modal-tree-view #svgCanvas {
+  margin: auto;
+  text-align: center;
+}
+
+.cursor-pointer {
+  cursor: pointer
+}
+
+.select-datasets .panel-body {
+  height: 300px;
+  overflow-y: scroll;
+}

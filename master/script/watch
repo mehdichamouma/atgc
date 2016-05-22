@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+webpack --config webpack.client.config.js \
+&& webpack --config webpack.server.config.js
