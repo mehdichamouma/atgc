@@ -1,5 +1,6 @@
 import express from "express"
 import bodyParser from 'body-parser'
+import http from "http"
 
 import process from "process"
 import fs from "fs"
@@ -11,8 +12,16 @@ import mongoose from "mongoose"
 import datasets from "./routes/datasets"
 import upload from "./routes/upload"
 import programs from "./routes/programs"
+import slaves from "./routes/slaves"
+import monitor from "./routes/monitor"
+import tests from "./routes/tests"
+
+import SlaveService from "./services/SlaveService"
+import {Server as WebSocketServer} from "ws"
 
 let app = express()
+let server = http.createServer(app)
+
 app.use("/api/upload", upload)
 
 let api = express.Router()
@@ -20,6 +29,8 @@ let api = express.Router()
 api.use(bodyParser.json())
 api.use("/datasets", datasets)
 api.use("/programs", programs)
+api.use("/workers", slaves)
+api.use("/tests", tests)
 
 //Server will serve the JSON Rest API on /api...
 app.use("/api", api)
@@ -50,10 +61,32 @@ dirs.forEach(d => {
   }
 })
 
+
+//...
+console.log("ok");
+
+let host = "ws://localhost:3002"
+SlaveService.init().then(() => {})
+
+let socketsHandlers = [{
+  path: "/monitor",
+  handleSocket: monitor
+}]
+
+socketsHandlers.forEach(handler => {
+  let ws = new WebSocketServer({
+    server: server,
+    path: handler.path
+  })
+  handler.handleSocket(ws)
+})
+
+//Connect to the DB and start the server
+
 let uri = `mongodb://${config.mongodb_host}:${config.mongodb_port}/${config.mongodb_dbname}`
 mongoose.connect("mongodb://localhost/test").then(() => {
   console.log("connected to db");
-  app.listen(3000, function () {
+  server.listen(3000, function () {
     console.log('Example app listening on port 3000!');
   });
 })

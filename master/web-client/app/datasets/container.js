@@ -27,7 +27,7 @@ export default class Container extends React.Component {
       form: fromJS({
         files: [],
         description: "",
-        type: "u"
+        type: "d"
       }),
       wrongTypeError: false,
       datasets: List()
@@ -111,7 +111,7 @@ export default class Container extends React.Component {
                       <Col sm={10}>
                         <FormControl
                           componentClass="textarea"
-                          placeholder="textarea"
+                          placeholder="description"
                           onChange={this.changeDescription.bind(this)}
                           value={this.state.form.get("description")}
                         />
@@ -126,8 +126,6 @@ export default class Container extends React.Component {
                         <Radio inline onChange={() => this.changeType("d")} checked={this.state.form.get("type") === "d"}>DNA</Radio>
                         {' '}
                         <Radio inline onChange={() => this.changeType("p")} checked={this.state.form.get("type") === "p"}>Protein</Radio>
-                        {' '}
-                        <Radio inline onChange={() => this.changeType("u")} checked={this.state.form.get("type") === "u"}>Unknown</Radio>
                       </Col>
                     </FormGroup>
 

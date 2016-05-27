@@ -18,27 +18,21 @@ export default class SideMenu extends React.Component {
               <div className="sidebar-nav navbar-collapse">
                   <ul className="nav" id="side-menu">
                       <li>
-                          <a href="index.html"><i className="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                          <Link to="/" ><i className="fa fa-dashboard fa-fw"></i> Dashboard</Link>
                       </li>
                       <li>
-                          <a href="#" aria-expanded="true"><i className="fa fa-bar-chart-o fa-fw"></i>Tests<span className="fa arrow"></span></a>
-                          <ul className="nav nav-second-level collapse in" aria-expanded="true">
-                              <li>
-                                  <Link to="/tests/new">Run a test</Link>
-                              </li>
-                              <li>
-                                  <a href="morris.html">Running tests</a>
-                              </li>
-                              <li>
-                                  <a href="morris.html">Tests history</a>
-                              </li>
-                          </ul>
+                          <Link to="/tests/new"><i className="glyphicon glyphicon-play-circle"></i> Create a test</Link>
+                          <Link to="/tests/current"><i className="glyphicon glyphicon-refresh"></i> Running Tests</Link>
+                          <Link to="/tests/history"><i className="fa fa-bar-chart-o fa-fw"></i> Test history</Link>
                       </li>
                       <li>
                           <Link to="/datasets"><i className="fa fa-table fa-fw"></i>Manage datasets</Link>
                       </li>
                       <li>
                           <Link to="/softwares"><i className="glyphicon glyphicon-floppy-disk fa-fw"></i>Manage programs</Link>
+                      </li>
+                      <li>
+                          <Link to="/settings"><i className="glyphicon glyphicon-cog"></i>Settings</Link>
                       </li>
                   </ul>
               </div>

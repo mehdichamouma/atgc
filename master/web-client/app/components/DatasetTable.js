@@ -36,14 +36,15 @@ export default class extends React.Component {
             </tr>
           </thead>
           <tbody>
-            {this.props.datasets.map(d => {
-              let selected = (typeof selectedRows.keyOf(d) !== "undefined")
+            {this.props.datasets.map((d, index) => {
+
               let classNames = []
-              if(selected) classNames.push("success")
-              if(selectable) classNames.push("cursor-pointer")
               let check, actions
               if(selectable) {
-                check = (<td><Checkbox checked={selected} onClick={() => this.rowSelected(d)} /></td>)
+                let selected = selectedRows.includes(index)
+                if(selected) classNames.push("success")
+                if(selectable) classNames.push("cursor-pointer")
+                check = (<td><Checkbox checked={selected} onClick={() => this.rowSelected(index)} /></td>)
               }
               if(!noAction) {
                 actions = (
@@ -56,7 +57,7 @@ export default class extends React.Component {
                 )
               }
               return (
-                <tr onClick={() => this.rowSelected(d)} className={classNames.join(" ")}>
+                <tr onClick={() => this.rowSelected(index)} className={classNames.join(" ")}>
                   {check}
                   <td>{d.get("title")}</td>
                   <td>{d.get("nSpecis") || "NA"}</td>

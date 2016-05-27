@@ -1,0 +1,13 @@
+program.update({name: programName}, {
+  "$push": {
+    versions: {
+      code: versionCode,
+      description: description,
+      creationDate: Date.now(),
+      binary: {
+        path: newPath,
+        size: s.size
+      }
+    }
+  }
+}

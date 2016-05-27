@@ -23,14 +23,16 @@ export default class extends React.Component {
   }
 
   render() {
-    let {dsId, trees, selectable, onSelect, ...rest} = this.props
-    let check
-    if(selectable) {
-      check = (<td><Checkbox /></td>)
-    }
+    let {dsId, trees, selectable, onSelect, selectedRows, ...rest} = this.props
     var Trees, _alert
     if(trees) {
-      Trees = trees.map(t => (
+      Trees = trees.map((t, index) => {
+              let check
+              if(selectable) {
+                let checked = selectedRows.includes(index)
+                check = (<td><Checkbox checked={checked} onClick={() => onSelect(index)}/></td>)
+              }
+              return (
                 <tr>
                     {check}
                     <td>{t.get("label")}</td>
@@ -41,7 +43,9 @@ export default class extends React.Component {
                         <Button onClick={() => this.quickView(t)}><Glyphicon glyph="grain"/></Button>
                       </ButtonGroup>
                     </td>
-                </tr>))
+                </tr>
+              )
+          })
     }
     else {
       _alert = (<Alert bsStyle="warning">No trees yet</Alert>)
